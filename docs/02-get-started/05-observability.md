@@ -1,6 +1,5 @@
----
-title: Observability
----
+# Observability
+
 
 We successfully got our Function [triggered](04-trigger-workload-with-event.md).
 Now we would like to check its logs and metrics. 

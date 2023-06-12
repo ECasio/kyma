@@ -1,6 +1,5 @@
 ---
-title: Quick install
----
+# Quick install
 
 To get started with Kyma, let's quickly install it first.
 

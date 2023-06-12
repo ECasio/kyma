@@ -1,6 +1,4 @@
----
-title: Deploy and expose a Function
----
+# Deploy and expose a Function
 
 Now that you've installed Kyma, let's deploy your first Function. We'll call it `hello-world`.
 
@@ -8,22 +6,17 @@ Now that you've installed Kyma, let's deploy your first Function. We'll call it 
 
 First, let's create the Function and apply it.
 
-<div tabs name="Deploy a Function" group="deploy-expose-function">
-  <details open>
-  <summary label="Kyma Dashboard">
-  Kyma Dashboard
-  </summary>
+<!-- tabs:start -->
+
+#### Kyma Dashboard
 
 1. In Kyma Dashboard, go to the `default` Namespace.
 2. Go to **Workloads** > **Functions**.
 3. Click on **Create Function**.
 4. Name the Function `hello-world`.
 5. From the **Language** dropdown, choose `nodejs` and click **Create**.
-  </details>
-  <details>
-  <summary label="kubectl">
-  kubectl
-  </summary>
+
+#### kubectl
 
 Run:
 
@@ -47,28 +40,20 @@ spec:
 EOF
 ```
 
-  </details>
-</div>
+<!-- tabs:end -->
 
 
 ### Verify the Function deployment
 
 Now let's make sure that the Function has been deployed successfully.
 
-<div tabs name="Verify the Function deployment" group="deploy-expose-function">
-  <details open>
-  <summary label="Kyma Dashboard">
-  Kyma Dashboard
-  </summary>
+<!-- tabs:start -->
+#### Kyma Dashboard
 
 The operation was successful if the Function **Status** changed to `RUNNING`.
 
 > **NOTE:** You might need to wait a few seconds for the status to change.
-  </details>
-  <details>
-  <summary label="kubectl">
-  kubectl
-  </summary>
+#### kubectl
 
 Run:
 
@@ -79,8 +64,7 @@ kubectl get functions hello-world
 The operation was successful if the statuses for **CONFIGURED**, **BUILT**, and **RUNNING** are `True`.
 
 
-  </details>
-</div>
+<!-- tabs:end -->
 
 ## Expose the Function
 
@@ -90,11 +74,8 @@ After we've got our `hello-world` Function deployed, we might want to expose it 
 
 First, let's create an [APIRule](../05-technical-reference/00-custom-resources/apix-01-apirule.md) for the Function.
 
-<div tabs name="Expose the Function" group="deploy-expose-function">
-  <details open>
-  <summary label="Kyma Dashboard">
-  Kyma Dashboard
-  </summary>
+<!-- tabs:start -->
+#### Kyma Dashboard
 
 1. Go to **Discovery and Network** > **API Rules**.
 2. Click on **Create API Rule**.
@@ -103,11 +84,7 @@ First, let's create an [APIRule](../05-technical-reference/00-custom-resources/a
 5. Provide your Service **Port** (`80`).
 6. Choose your host from the **Host** dropdown and replace the asterisk (*) with the name of your subdomain (`hello-world`).
 
-  </details>
-  <details>
-  <summary label="kubectl">
-  kubectl
-  </summary>
+#### kubectl
 
 Run:
 
@@ -139,18 +116,14 @@ cat <<EOF | kubectl apply -f -
 EOF
 ```
 
-  </details>
-</div>
+<!-- tabs:end -->
 
 ### Verify the Function exposure
 
 Now let's verify that the Function has been exposed successfully.
 
-<div tabs name="Access the Function" group="deploy-expose-function">
-  <details open>
-  <summary label="Kyma Dashboard">
-  Kyma Dashboard
-  </summary>
+<!-- tabs:start -->
+#### Kyma Dashboard
 
 In your Function's **Configuration** tab, click on the APIRule's **Host**.
 This opens the Function's external address as a new page.
@@ -158,11 +131,7 @@ This opens the Function's external address as a new page.
 > **NOTE:** Alternatively, from the left navigation go to **API Rules**, and click on the **Host** URL there.
 
 The operation was successful if the page says `Hello World from the Kyma Function main running on nodejs16!`.
-  </details>
-  <details>
-  <summary label="kubectl">
-  kubectl
-  </summary>
+#### kubectl
 
 Run:
 
@@ -172,8 +141,7 @@ curl https://hello-world.$CLUSTER_DOMAIN
 
 The operation was successful if the call returns `Hello Serverless`.
 
-  </details>
-</div>
+<!-- tabs:end -->
 
 > **NOTE:** Local installation provides the self-signed certificates out of the box, but if you want to access your API through your browser, you must add them to your local trust store. 
 To do this, call the `kyma import certs` command with proper permissions. For more information, read [Kyma import certs](https://github.com/kyma-project/cli/blob/main/docs/gen-docs/kyma_import_certs.md). 

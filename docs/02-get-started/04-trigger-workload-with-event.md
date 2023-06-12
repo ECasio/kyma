@@ -1,6 +1,4 @@
----
-title: Trigger a workload with an event
----
+# Trigger a workload with an event
 
 We already know how to create and expose a workload ([Function](02-deploy-expose-function.md) and [microservice](03-deploy-expose-microservice.md)). 
 Now it's time to actually use an event to trigger a workload.
